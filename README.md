@@ -30,7 +30,7 @@ A sample configuration file is presented below :
 It produces a pdf output, representing the _repartition_ of the servers response
 time for the different configurations. An example result looks like that :
 
-![An example run using this tool.](https://github.com/padenot/abop/raw/master/tests/Caching_vs_Nocaching.png "Example run. The caching version is slightly faster.")
+![An example run using this tool](https://github.com/padenot/abop/raw/master/tests/Caching_vs_Nocaching.png "Example run. The caching version is slightly faster.")
 
 You can test for yourself if you have `node` installed, by running the `test.sh`
 shell script from the `tests/` directory.
