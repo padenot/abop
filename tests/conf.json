@@ -1,0 +1,8 @@
+{
+  "concurrency" : "100",
+  "requests" : "100000",
+  "urls" : {
+    "Caching" : "http://0.0.0.0:8125/put/babab/plop/ac",
+    "Nocaching" : "http://0.0.0.0:8126/put/babab/plop/ac"
+  }
+}
