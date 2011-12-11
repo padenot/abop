@@ -21,7 +21,7 @@ A sample configuration file is presented below :
 {
   "concurrency" : "100",  // number of requests made at one
   "requests" : "100000",  // total number of requests
-  "args" : "-k"           // other arguments to pass to `ab`
+  "args" : "-k",           // other arguments to pass to `ab`
   "urls" : {              // A name, and the url to hit for the different
                           // configurations to bench
     "Caching" : "http://0.0.0.0:8125/put/babab/plop/ac",
