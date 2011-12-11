@@ -13,12 +13,15 @@ This program wraps Apache Bench, and provides a graphical output.
 `abop` takes a configuration file as argument, and searches for `config.json` in
 the current directory if none is provided.
 
+Additionally, you can pass arguments to `ab`, still in the configuration file.
+
 A sample configuration file is presented below :
 
 ```json
 {
   "concurrency" : "100",  // number of requests made at one
   "requests" : "100000",  // total number of requests
+  "args" : "-k"           // other arguments to pass to `ab`
   "urls" : {              // A name, and the url to hit for the different
                           // configurations to bench
     "Caching" : "http://0.0.0.0:8125/put/babab/plop/ac",

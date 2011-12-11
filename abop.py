@@ -8,9 +8,16 @@ import sys
 
 
 def error_message(message, e=False):
-  print  "\033[91m" + message + "\n \033[0m"
+  print  "\033[91m" + "Error: "+ message + "\n \033[0m"
   if (e):
     exit(1)
+
+def warning_message(message):
+  print  "\033[93m" + "Warning: " + message + "\n \033[0m"
+
+def ok_message(message):
+  print  "\033[92m" + message + "\n \033[0m"
+
 
 rc('font',**{'family':'serif','sans-serif':['Helvetica']})
 rc('text', usetex=True)
@@ -34,9 +41,9 @@ def get_data(file):
 
 
 def bench(name, url):
-  command = '/usr/bin/ab -n %d -c %d -k -e %s.csv %s' % (requests, concurrency, name, url)
+  command = '/usr/bin/ab -n %d -c %d -k -e %s.csv %s %s' % (requests, concurrency, name, ab_flags, url)
+  ok_message("Executing : " + command)
   command = command.split()
-  print command
   ret = subprocess.call(command)
 
 if len(sys.argv) == 2:
@@ -56,9 +63,29 @@ except Exception as e:
   print e
   exit(1)
 
-servers = d["urls"];
-requests = int(d["requests"])
-concurrency = int(d["concurrency"])
+if "urls" in d.keys():
+  servers = d["urls"];
+else:
+  error_message("Need urls to hit, see example configuration file.")
+  exit(1)
+
+if "requests" in d.keys():
+  requests = int(d["requests"])
+else:
+  warning_message("No request count. Assuming 10000.")
+  requests = 10000;
+
+if "concurrency" in d.keys():
+  concurrency = int(d["concurrency"])
+else:
+  warning_message("No concurrency value. Assuming 100.")
+  concurrency = 100
+
+if "args" in d.keys():
+  ab_flags = d["args"];
+  ok_message("Custom arguments : " + ab_flags)
+else:
+  ab_flags = ""
 
 for i in servers.keys():
   bench(i, servers[i])
